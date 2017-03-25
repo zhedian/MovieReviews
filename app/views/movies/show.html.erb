@@ -3,8 +3,10 @@
     <span class="pull-right">
       <% if current_user && current_user.is_fan_of?(@movie) %>
         <label class="label label-success"> 喜欢 </label>
+          <%= link_to("不喜欢了", do_not_like_movie_path(@movie), method: :post, class: "btn btn-default") %>
       <% else %>
         <label class="label label-warning"> 不喜欢 </label>
+          <%= link_to("喜欢", like_movie_path(@movie), method: :post, class: "btn btn-default") %>
       <% end %>
     </span>
     <%= link_to("Write a review", new_movie_review_path(@movie), class: "btn btn default pull-right") %>
