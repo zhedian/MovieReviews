@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @reviews = @movie.reviews.order("created_at DESC")
+    @reviews = @movie.reviews.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
   end
 
   def edit
