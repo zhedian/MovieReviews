@@ -11,4 +11,12 @@ class User < ApplicationRecord
   def is_fan_of?(movie)
     favorited_movies.include?(movie)
   end
+
+  def like!(movie)
+    favorited_movies << movie
+  end
+
+  def do_not_like!(movie)
+    favorited_movies.delete(movie)
+  end 
 end
