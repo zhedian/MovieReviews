@@ -44,11 +44,9 @@ class MoviesController < ApplicationController
   end
 
   def like
-    @movie = Moive.find(params[:id])
+    @movie = Movie.find(params[:id])
     if !current_user.is_fan_of?(@movie)
-      current_user.like!(@group), notice: "成功喜欢上它了！"
-    else
-      warning: "你已经喜欢它了！"
+      current_user.like!(@movie)
     end
     redirect_to movie_path(@movie)
   end
@@ -56,12 +54,10 @@ class MoviesController < ApplicationController
   def do_not_like
     @movie = Movie.find(params[:id])
     if current_user.is_fan_of?(@movie)
-      current_user.do_not_like!(@movie), alert: "你不喜欢它了！"
-    else
-      waring: "你本来就不喜欢它！"
+      current_user.do_not_like!(@movie)
     end
     redirect_to movie_path(@movie)
-     
+
   end
 
   private
