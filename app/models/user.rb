@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :movie_relationships
   has_many :favorited_movies, :through => :movie_relationships, :source => :movie
+
+  def is_fan_of?(movie)
+    favorited_movies.include?(movie)
+  end
 end
